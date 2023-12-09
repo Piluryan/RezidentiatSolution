@@ -7,6 +7,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentatio
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoctorFactory.Web", "src\Presentation\DoctorFactory.Web\DoctorFactory.Web.csproj", "{21FB19FB-A87A-492F-B3E6-57984EC8B77A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{54FD1072-AADD-41E2-B8EE-360C5A7FE41A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoctorFactory.Domain", "src\Domain\DoctorFactory.Domain\DoctorFactory.Domain.csproj", "{12949068-0A35-4743-93C9-283896B88B9B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,12 +21,17 @@ Global
 		{21FB19FB-A87A-492F-B3E6-57984EC8B77A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21FB19FB-A87A-492F-B3E6-57984EC8B77A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21FB19FB-A87A-492F-B3E6-57984EC8B77A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12949068-0A35-4743-93C9-283896B88B9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12949068-0A35-4743-93C9-283896B88B9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12949068-0A35-4743-93C9-283896B88B9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12949068-0A35-4743-93C9-283896B88B9B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{21FB19FB-A87A-492F-B3E6-57984EC8B77A} = {70B68ACE-0295-4F5B-B86A-6FDB8B0BB0FC}
+		{12949068-0A35-4743-93C9-283896B88B9B} = {54FD1072-AADD-41E2-B8EE-360C5A7FE41A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FBBC3736-559C-4D49-91D7-0B441D6CD52A}
