@@ -6,4 +6,10 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Application\DoctorFactory.Interfaces\DoctorFactory.Interfaces.csproj" />
+    <ProjectReference Include="..\..\Application\DoctorFactory.Services\DoctorFactory.Services.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\DAL\DoctorFactory.DAL\DoctorFactory.DAL.csproj" />
+  </ItemGroup>
+
 </Project>

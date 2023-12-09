@@ -1,7 +1,14 @@
+using DoctorFactory.DAL;
+using DoctorFactory.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services
+    .AddApplicationServices()
+    .AddInfrastructureServices();
 
 var app = builder.Build();
 
