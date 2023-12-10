@@ -1,14 +1,25 @@
-using DoctorFactory.DAL;
+using DoctorFactory.DAL.Context;
 using DoctorFactory.Services;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+#region Connection string used.
+
+var dbConfig = builder.Configuration.GetSection("DoctorFactory");
+var dbType = dbConfig["type"];
+var dbConnection = dbConfig.GetConnectionString(dbType!);
+
+builder.Services.AddDbContext<RezidentDatabase>(options =>
+{
+    options.UseSqlServer(dbConnection, x => x.MigrationsAssembly("DoctorFactory.SqlServer"));
+});
+
+#endregion
+
 builder.Services.AddControllersWithViews();
 
-builder.Services
-    .AddApplicationServices()
-    .AddInfrastructureServices();
+builder.Services.AddApplicationServices();
 
 var app = builder.Build();
 

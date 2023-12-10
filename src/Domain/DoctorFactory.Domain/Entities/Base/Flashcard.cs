@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using DoctorFactory.Domain.Entities.Course;
+﻿using DoctorFactory.Domain.Entities.Course;
 
 namespace DoctorFactory.Domain.Entities.Base;
 

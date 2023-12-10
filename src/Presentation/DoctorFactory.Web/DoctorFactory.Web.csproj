@@ -7,9 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Application\DoctorFactory.Interfaces\DoctorFactory.Interfaces.csproj" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\Application\DoctorFactory.Services\DoctorFactory.Services.csproj" />
-    <ProjectReference Include="..\..\Infrastructure\DAL\DoctorFactory.DAL\DoctorFactory.DAL.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\DAL\DoctorFactory.SqlServer\DoctorFactory.SqlServer.csproj" />
   </ItemGroup>
 
 </Project>
