@@ -1,5 +1,6 @@
 using DoctorFactory.DAL.Context;
 using DoctorFactory.Services;
+using DoctorFactory.Services.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,7 +22,15 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddApplicationServices();
 
+//------------------------------------------------------------------------------//
+
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var dbInitializer = scope.ServiceProvider.GetRequiredService<RezitentiatDbInitializer>();
+    await dbInitializer.InitializeAsync();
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

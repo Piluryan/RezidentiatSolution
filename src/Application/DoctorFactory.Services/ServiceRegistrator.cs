@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using DoctorFactory.Services.Data;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace DoctorFactory.Services;
 public static class ServiceRegistrator
@@ -8,6 +9,10 @@ public static class ServiceRegistrator
     /// <returns>The updated IServiceCollection.</returns>
     public static IServiceCollection AddApplicationServices(this IServiceCollection services)
     {
+        services
+            .AddTransient<RezitentiatDbInitializer>()
+            ;
+
         return services;
     }
 }

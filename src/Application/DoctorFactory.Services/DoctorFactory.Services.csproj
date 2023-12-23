@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Infrastructure\DAL\DoctorFactory.DAL\DoctorFactory.DAL.csproj" />
     <ProjectReference Include="..\DoctorFactory.Interfaces\DoctorFactory.Interfaces.csproj" />
   </ItemGroup>
 
