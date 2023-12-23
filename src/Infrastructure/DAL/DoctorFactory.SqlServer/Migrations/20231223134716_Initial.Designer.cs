@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DoctorFactory.SqlServer.Migrations
 {
     [DbContext(typeof(RezidentDatabase))]
-    [Migration("20231210203105_Initial")]
+    [Migration("20231223134716_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -29,30 +29,30 @@ namespace DoctorFactory.SqlServer.Migrations
 
             modelBuilder.Entity("BlogPostTag", b =>
                 {
-                    b.Property<int>("PostsId")
+                    b.Property<int>("BlogPostId")
                         .HasColumnType("int");
 
-                    b.Property<int>("TagsId")
+                    b.Property<int>("TagId")
                         .HasColumnType("int");
 
-                    b.HasKey("PostsId", "TagsId");
+                    b.HasKey("BlogPostId", "TagId");
 
-                    b.HasIndex("TagsId");
+                    b.HasIndex("TagId");
 
                     b.ToTable("BlogPostTag");
                 });
 
             modelBuilder.Entity("CourseInstructor", b =>
                 {
-                    b.Property<int>("CoursesId")
+                    b.Property<int>("CourseId")
                         .HasColumnType("int");
 
-                    b.Property<int>("InstructorsId")
+                    b.Property<int>("InstructorId")
                         .HasColumnType("int");
 
-                    b.HasKey("CoursesId", "InstructorsId");
+                    b.HasKey("CourseId", "InstructorId");
 
-                    b.HasIndex("InstructorsId");
+                    b.HasIndex("InstructorId");
 
                     b.ToTable("CourseInstructor");
                 });
@@ -81,9 +81,6 @@ namespace DoctorFactory.SqlServer.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CourseCategoryId")
-                        .HasColumnType("int");
-
                     b.Property<int>("LessonId")
                         .HasColumnType("int");
 
@@ -94,8 +91,6 @@ namespace DoctorFactory.SqlServer.Migrations
                     b.Property<string>("Question")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.HasIndex("CourseCategoryId");
 
                     b.HasIndex("LessonId");
 
@@ -466,13 +461,13 @@ namespace DoctorFactory.SqlServer.Migrations
                 {
                     b.HasOne("DoctorFactory.Domain.Entities.Blog.BlogPost", null)
                         .WithMany()
-                        .HasForeignKey("PostsId")
-                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .HasForeignKey("BlogPostId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("DoctorFactory.Domain.Entities.Blog.Tag", null)
                         .WithMany()
-                        .HasForeignKey("TagsId")
+                        .HasForeignKey("TagId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -481,32 +476,24 @@ namespace DoctorFactory.SqlServer.Migrations
                 {
                     b.HasOne("DoctorFactory.Domain.Entities.Course.Course", null)
                         .WithMany()
-                        .HasForeignKey("CoursesId")
-                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("DoctorFactory.Domain.Entities.Course.Instructor", null)
                         .WithMany()
-                        .HasForeignKey("InstructorsId")
+                        .HasForeignKey("InstructorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
             modelBuilder.Entity("DoctorFactory.Domain.Entities.Base.Flashcard", b =>
                 {
-                    b.HasOne("DoctorFactory.Domain.Entities.Course.CourseCategory", "CourseCategory")
-                        .WithMany()
-                        .HasForeignKey("CourseCategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("DoctorFactory.Domain.Entities.Course.Lesson", "Lesson")
                         .WithMany("Flashcards")
                         .HasForeignKey("LessonId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("CourseCategory");
 
                     b.Navigation("Lesson");
                 });

@@ -156,20 +156,21 @@ namespace DoctorFactory.SqlServer.Migrations
                 name: "BlogPostTag",
                 columns: table => new
                 {
-                    PostsId = table.Column<int>(type: "int", nullable: false),
-                    TagsId = table.Column<int>(type: "int", nullable: false)
+                    BlogPostId = table.Column<int>(type: "int", nullable: false),
+                    TagId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BlogPostTag", x => new { x.PostsId, x.TagsId });
+                    table.PrimaryKey("PK_BlogPostTag", x => new { x.BlogPostId, x.TagId });
                     table.ForeignKey(
-                        name: "FK_BlogPostTag_BlogPosts_PostsId",
-                        column: x => x.PostsId,
+                        name: "FK_BlogPostTag_BlogPosts_BlogPostId",
+                        column: x => x.BlogPostId,
                         principalTable: "BlogPosts",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_BlogPostTag_Tags_TagsId",
-                        column: x => x.TagsId,
+                        name: "FK_BlogPostTag_Tags_TagId",
+                        column: x => x.TagId,
                         principalTable: "Tags",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -222,20 +223,21 @@ namespace DoctorFactory.SqlServer.Migrations
                 name: "CourseInstructor",
                 columns: table => new
                 {
-                    CoursesId = table.Column<int>(type: "int", nullable: false),
-                    InstructorsId = table.Column<int>(type: "int", nullable: false)
+                    CourseId = table.Column<int>(type: "int", nullable: false),
+                    InstructorId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CourseInstructor", x => new { x.CoursesId, x.InstructorsId });
+                    table.PrimaryKey("PK_CourseInstructor", x => new { x.CourseId, x.InstructorId });
                     table.ForeignKey(
-                        name: "FK_CourseInstructor_Courses_CoursesId",
-                        column: x => x.CoursesId,
+                        name: "FK_CourseInstructor_Courses_CourseId",
+                        column: x => x.CourseId,
                         principalTable: "Courses",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CourseInstructor_Instructors_InstructorsId",
-                        column: x => x.InstructorsId,
+                        name: "FK_CourseInstructor_Instructors_InstructorId",
+                        column: x => x.InstructorId,
                         principalTable: "Instructors",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -311,7 +313,6 @@ namespace DoctorFactory.SqlServer.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false, defaultValueSql: "NEXT VALUE FOR [EntitySequence]"),
                     LessonId = table.Column<int>(type: "int", nullable: false),
-                    CourseCategoryId = table.Column<int>(type: "int", nullable: false),
                     Question = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Answer = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
@@ -320,16 +321,11 @@ namespace DoctorFactory.SqlServer.Migrations
                 {
                     table.PrimaryKey("PK_Flashcard", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Flashcard_CourseCategories_CourseCategoryId",
-                        column: x => x.CourseCategoryId,
-                        principalTable: "CourseCategories",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
                         name: "FK_Flashcard_Lessons_LessonId",
                         column: x => x.LessonId,
                         principalTable: "Lessons",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -415,9 +411,9 @@ namespace DoctorFactory.SqlServer.Migrations
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BlogPostTag_TagsId",
+                name: "IX_BlogPostTag_TagId",
                 table: "BlogPostTag",
-                column: "TagsId");
+                column: "TagId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_BlogReviews_PostId",
@@ -435,9 +431,9 @@ namespace DoctorFactory.SqlServer.Migrations
                 column: "CourseId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CourseInstructor_InstructorsId",
+                name: "IX_CourseInstructor_InstructorId",
                 table: "CourseInstructor",
-                column: "InstructorsId");
+                column: "InstructorId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CourseRequirements_CourseId",
@@ -453,11 +449,6 @@ namespace DoctorFactory.SqlServer.Migrations
                 name: "IX_Courses_CategoryId",
                 table: "Courses",
                 column: "CategoryId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Flashcard_CourseCategoryId",
-                table: "Flashcard",
-                column: "CourseCategoryId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Flashcard_LessonId",
