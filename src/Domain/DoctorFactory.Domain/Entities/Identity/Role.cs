@@ -2,7 +2,8 @@
 
 namespace DoctorFactory.Domain.Entities.Identity;
 
-internal class Role : IdentityRole
+/// <summary> Identity roles. </summary>
+public class Role : IdentityRole
 {
     public const string Adinistrators = "Administrators";
 

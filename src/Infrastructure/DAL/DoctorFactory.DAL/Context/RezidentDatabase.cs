@@ -1,11 +1,13 @@
 ﻿using DoctorFactory.DAL.EntityConfigurations;
 using DoctorFactory.Domain.Entities.Blog;
 using DoctorFactory.Domain.Entities.Course;
+using DoctorFactory.Domain.Entities.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace DoctorFactory.DAL.Context;
 
-public class RezidentDatabase : DbContext
+public class RezidentDatabase : IdentityDbContext<User, Role, string>
 {
     public RezidentDatabase(DbContextOptions<RezidentDatabase> options) : base(options) { }
 

@@ -3,7 +3,7 @@
 namespace DoctorFactory.Domain.Entities.Identity;
 
 /// <summary> Identity user. </summary>
-internal class User : IdentityUser
+public class User : IdentityUser
 {
     public const string Administrator = "Admin";
 
