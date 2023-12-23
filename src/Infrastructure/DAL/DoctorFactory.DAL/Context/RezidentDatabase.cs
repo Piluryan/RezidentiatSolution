@@ -45,12 +45,14 @@ public class RezidentDatabase : DbContext
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(EntityConfiguration).Assembly);
 
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(FlashCardConfiguration).Assembly);
-
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(BlogCategoryConfiguration).Assembly);
+
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(BlogPostConfiguration).Assembly);
 
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(CourseConfiguration).Assembly);
 
         base.OnModelCreating(modelBuilder);
     }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => optionsBuilder.EnableSensitiveDataLogging();
 }
