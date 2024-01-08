@@ -1,12 +1,13 @@
 ﻿using DoctorFactory.Domain.Entities.Base;
 using DoctorFactory.Domain.Entities.Blog;
 using DoctorFactory.Domain.Entities.Course;
+using DoctorFactory.Domain.Entities.Identity;
 using DoctorFactory.Domain.Shared;
 
 namespace DoctorFactory.Services.Data;
 
 /// <summary> Test data. </summary>
-internal static class TestData
+internal class TestData
 {
     const string shortDescription = "Use XD to get a job in UI Design, User Interface, User Experience design, UX design & Web Design";
 
@@ -22,31 +23,26 @@ internal static class TestData
 
     #region Course.
 
-    public static IEnumerable<CourseCategory> CourseCategories { get; set; }
+    public static IEnumerable<CourseCategory> CourseCategories { get; set; } = [];
 
-    public static IEnumerable<Course> Courses { get; set; }
+    public static IEnumerable<Course> Courses { get; set; } = [];
 
     #endregion
 
     #region Blog.
 
-    public static IEnumerable<BlogCategory> BlogCategories { get; set; }
+    public static IEnumerable<BlogCategory> BlogCategories { get; set; } = [];
 
-    public static IEnumerable<BlogPost> BlogPosts { get; set; }
+    public static IEnumerable<BlogPost> BlogPosts { get; set; } = [];
 
-    #endregion
+    #endregion 
 
-    static TestData()
+    public TestData(User user)
     {
         var random = new Random();
 
         #region Course data.
-
-        var instructors = new List<Instructor> {
-            new() { Id = 0, Name = "John Doe", Ocupation = "Software Engineer", About = "Experienced developer with a passion for teaching." },
-            new() { Id = 0, Name = "John Doe", Ocupation = "Software Engineer", About = "Experienced developer with a passion for teaching." }
-        };
-
+        
         var categories = new CourseCategory[]
         {
             new() { Id = 0, Name = "Farmacie" },
@@ -54,7 +50,7 @@ internal static class TestData
             new() { Id = 0, Name = "Medicina dentara" }
         };
         CourseCategories = categories;
-        
+
         #region Requirements.
 
         var requirements1 = new List<CourseRequirement>
@@ -120,7 +116,7 @@ internal static class TestData
             Id = 0,
             Name = "Course name - 1",
             Category = categories[0],
-            Instructors = instructors,
+            Instructor = user,
             ShortDescription = shortDescription + " Course 1",
             Description = " Course 1" + description,
             Image = string.Empty,
@@ -140,7 +136,7 @@ internal static class TestData
             Id = 0,
             Name = "Course name - 2",
             Category = categories[1],
-            Instructors = instructors,
+            Instructor = user,
             ShortDescription = shortDescription + " Course 2",
             Description = " Course 2" + description,
             Image = string.Empty,
@@ -295,14 +291,7 @@ internal static class TestData
 
         #endregion
 
-        #region Blog data.
-
-        var blogAuthors = new Author[]
-        {
-            new() { Id = 0, Name = "Blog author 1", Ocupation = "Blog author ocupation 1", About = "Blog author about 1" },
-            new() { Id = 0, Name = "Blog author 2", Ocupation = "Blog author ocupation 2", About = "Blog author about 2" },
-            new() { Id = 0, Name = "Blog author 3", Ocupation = "Blog author ocupation 3", About = "Blog author about 3" }
-        };
+        #region Blog data. 
 
         var blogCategories = new BlogCategory[]
         {
@@ -316,7 +305,7 @@ internal static class TestData
         {
             Id = 0,
             Category = blogCategories[0],
-            BlogPostAuthor = blogAuthors[0],
+            BlogPostAuthor = user,
             Title = "Blog post title 1",
             Date = DateTimeOffset.Now.AddDays(random.Next(5, 150)),
             DateUpdate = null,
@@ -331,7 +320,7 @@ internal static class TestData
         {
             Id = 0,
             Category = blogCategories[1],
-            BlogPostAuthor = blogAuthors[1],
+            BlogPostAuthor = user,
             Title = "Blog post title 2",
             Date = DateTimeOffset.Now.AddDays(random.Next(5, 150)),
             DateUpdate = null,
@@ -346,7 +335,7 @@ internal static class TestData
         {
             Id = 0,
             Category = blogCategories[2],
-            BlogPostAuthor = blogAuthors[2],
+            BlogPostAuthor = user,
             Title = "Blog post title 3",
             Date = DateTimeOffset.Now.AddDays(random.Next(5, 150)),
             DateUpdate = null,

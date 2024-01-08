@@ -13,5 +13,7 @@ internal class BlogPostConfiguration : IEntityTypeConfiguration<BlogPost>
             .UsingEntity<Dictionary<string, object>>("BlogPostTag",
                 x => x.HasOne<Tag>().WithMany().HasForeignKey("TagId").OnDelete(DeleteBehavior.Cascade),
                 x => x.HasOne<BlogPost>().WithMany().HasForeignKey("BlogPostId").OnDelete(DeleteBehavior.Cascade));
+
+        builder.HasOne(x => x.BlogPostAuthor).WithMany(x => x.Posts).OnDelete(DeleteBehavior.Cascade);
     }
 }

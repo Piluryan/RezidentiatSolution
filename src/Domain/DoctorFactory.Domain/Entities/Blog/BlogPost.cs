@@ -1,4 +1,5 @@
 ﻿using DoctorFactory.Domain.Entities.Base;
+using DoctorFactory.Domain.Entities.Identity;
 
 namespace DoctorFactory.Domain.Entities.Blog;
 
@@ -9,7 +10,7 @@ public class BlogPost : Entity
     public required BlogCategory Category { get; set; }
 
     /// <summary> Post author. </summary>
-    public required Author BlogPostAuthor { get; set; }
+    public required User BlogPostAuthor { get; set; }
 
     /// <summary> Post title. </summary>
     public required string Title { get; set; }

@@ -20,7 +20,6 @@ public class RezidentDatabase : IdentityDbContext<User, Role, string>
     public DbSet<BlogCategory> BlogCategories { get; set; }
     public DbSet<BlogReview> BlogReviews { get; set; }
     public DbSet<BlogPost> BlogPosts { get; set; }
-    public DbSet<Author> Authors { get; set; }
     public DbSet<Tag> Tags { get; set; }
 
     #endregion
@@ -31,7 +30,6 @@ public class RezidentDatabase : IdentityDbContext<User, Role, string>
     public DbSet<Course> Courses { get; set; }
     public DbSet<CourseRequirement> CourseRequirements { get; set; }
     public DbSet<CourseReview> CourseReviews { get; set; }
-    public DbSet<Instructor> Instructors { get; set; }
     public DbSet<CourseGoal> CourseGoals { get; set; }
     public DbSet<Lesson> Lessons { get; set; }
     public DbSet<LessonContent> LessonContents { get; set; }

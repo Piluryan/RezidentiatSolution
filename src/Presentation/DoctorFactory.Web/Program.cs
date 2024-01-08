@@ -1,6 +1,8 @@
 using DoctorFactory.DAL.Context;
+using DoctorFactory.Domain.Entities.Identity;
 using DoctorFactory.Services;
 using DoctorFactory.Services.Data;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,6 +23,42 @@ builder.Services.AddDbContext<RezidentDatabase>(options =>
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddApplicationServices();
+
+builder.Services.AddIdentity<User, Role>()
+    .AddEntityFrameworkStores<RezidentDatabase>()
+    .AddDefaultTokenProviders();
+
+builder.Services.Configure<IdentityOptions>(opt =>
+{
+#if DEBUG
+    opt.Password.RequireDigit = false;
+    opt.Password.RequireLowercase = false;
+    opt.Password.RequireUppercase = false;
+    opt.Password.RequireNonAlphanumeric = false;
+    opt.Password.RequiredLength = 3;
+    opt.Password.RequiredUniqueChars = 3;
+#endif
+
+    opt.User.RequireUniqueEmail = false;
+    opt.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIGKLMNOPQRSTUVWXYZ1234567890";
+
+    opt.Lockout.AllowedForNewUsers = false;
+    opt.Lockout.MaxFailedAccessAttempts = 10;
+    opt.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(15);
+});
+
+builder.Services.ConfigureApplicationCookie(opt =>
+{
+    opt.Cookie.Name = "DoctorFactory.Cookie";
+    opt.Cookie.HttpOnly = true;
+    opt.ExpireTimeSpan = TimeSpan.FromDays(10);
+
+    opt.LoginPath = "/Account/Login";
+    opt.LogoutPath = "/Account/Logout";
+    opt.AccessDeniedPath = "/Account/AccessDenied";
+
+    opt.SlidingExpiration = true;
+});
 
 //------------------------------------------------------------------------------//
 
@@ -44,6 +82,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

@@ -1,4 +1,5 @@
 ﻿using DoctorFactory.Domain.Entities.Base;
+using DoctorFactory.Domain.Entities.Identity;
 using DoctorFactory.Domain.Shared;
 
 namespace DoctorFactory.Domain.Entities.Course;
@@ -10,7 +11,7 @@ public class Course : NamedEntity
     public required CourseCategory Category { get; set; }
 
     /// <summary> Intructor. </summary>
-    public ICollection<Instructor>? Instructors { get; set; } = new HashSet<Instructor>();
+    public required User Instructor { get; set; } 
 
     /// <summary> Short description. </summary>
     public required string ShortDescription { get; set; }
