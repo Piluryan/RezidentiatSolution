@@ -35,7 +35,7 @@ public class RezitentiatDbInitializer
     {
         _logger.LogInformation("Initializing database...");
 
-        await _db.Database.EnsureDeletedAsync().ConfigureAwait(false);
+        //await _db.Database.EnsureDeletedAsync().ConfigureAwait(false);
 
         #region Migrations.
 
@@ -57,9 +57,9 @@ public class RezitentiatDbInitializer
 
         #endregion
 
-        await SeedIdentityAsync().ConfigureAwait(false);
+        //await SeedIdentityAsync().ConfigureAwait(false);
 
-        await SeedTestDataAsync().ConfigureAwait(false);
+        //await SeedTestDataAsync().ConfigureAwait(false);
          
         _logger.LogInformation("Database initialization completed.");
     }
