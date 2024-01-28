@@ -12,17 +12,14 @@
             </a>
 
             <div class="explore-content py-25 rounded-8 bg-white toggle-element js-explore-toggle">
-                <div class="explore__item">
-                    <a href="#" class="text-dark-1">Medicina generala</a>
-                </div>
 
-                <div class="explore__item">
-                    <a href="#" class="text-dark-1">Medicina dentara</a>
-                </div>
+                @foreach (var category in ViewBag.Categories)
+                {
+                    <div class="explore__item">
+                        <a href="#" class="text-dark-1">@category.Name</a>
+                    </div>
 
-                <div class="explore__item">
-                    <a href="#" class="text-dark-1">Farmacie</a>
-                </div>
+                }
 
                 <div class="explore__item">
                     <a href="#" class="text-purple-1 underline">View All Courses</a>

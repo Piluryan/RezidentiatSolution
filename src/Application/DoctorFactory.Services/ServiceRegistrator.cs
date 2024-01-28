@@ -1,4 +1,6 @@
-﻿using DoctorFactory.Services.Data;
+﻿using DoctorFactory.Interfaces.Services;
+using DoctorFactory.Services.Courses.InSQL;
+using DoctorFactory.Services.Data;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace DoctorFactory.Services;
@@ -11,9 +13,9 @@ public static class ServiceRegistrator
     {
         services
             .AddTransient<RezitentiatDbInitializer>()
+            .AddTransient<ICourse, SqlCourses>()
             ;
 
         return services;
     }
 }
-    

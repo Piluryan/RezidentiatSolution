@@ -15,33 +15,22 @@
                     <button class="tabs__button px-15 py-8 rounded-8 js-tabs-button is-active" data-tab-target=".-tab-item-1" type="button">All Categories</button>
                 </div>
 
-                <div>
-                    <button class="tabs__button px-15 py-8 rounded-8 js-tabs-button " data-tab-target=".-tab-item-2" type="button">Animation</button>
-                </div>
+                @{
+                    int tabIndex = 2;
+                }
 
-                <div>
-                    <button class="tabs__button px-15 py-8 rounded-8 js-tabs-button " data-tab-target=".-tab-item-3" type="button">Design</button>
-                </div>
+                @foreach (var category in ViewBag.Categories)
+                {
+                    <div>
+                        <button class="tabs__button px-15 py-8 rounded-8 js-tabs-button"
+                                data-tab-target=".-tab-item-@tabIndex"
+                                type="button">
+                            @category.Name
+                        </button>
+                    </div>
 
-                <div>
-                    <button class="tabs__button px-15 py-8 rounded-8 js-tabs-button " data-tab-target=".-tab-item-4" type="button">Illustration</button>
-                </div>
-
-                <div>
-                    <button class="tabs__button px-15 py-8 rounded-8 js-tabs-button " data-tab-target=".-tab-item-5" type="button">Lifestyle</button>
-                </div>
-
-                <div>
-                    <button class="tabs__button px-15 py-8 rounded-8 js-tabs-button " data-tab-target=".-tab-item-6" type="button">Photo &amp; Film</button>
-                </div>
-
-                <div>
-                    <button class="tabs__button px-15 py-8 rounded-8 js-tabs-button " data-tab-target=".-tab-item-7" type="button">Business</button>
-                </div>
-
-                <div>
-                    <button class="tabs__button px-15 py-8 rounded-8 js-tabs-button " data-tab-target=".-tab-item-8" type="button">Writing</button>
-                </div>
+                    tabIndex++;
+                }
             </div>
 
             <div class="tabs__content pt-60 js-tabs-content">
