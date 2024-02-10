@@ -1,0 +1,36 @@
+﻿@{
+    Layout = "_LayoutBase";
+}
+
+<main class="main-content bg-beige-1">
+    <header data-anim="fade" data-add-bg="" class="header -base js-header">
+        <div class="header__container py-10">
+            <div class="row justify-between items-center">
+                <div class="col-auto">
+                    <div class="header-left">
+                        <div class="header__logo ">
+                            <a data-barba asp-controller="Home" asp-action="Index">
+                                <img src="~/img/placeholders/general/logo.svg" alt="logo">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="content-wrapper  js-content-wrapper">
+        <section class="form-page js-mouse-move-container">
+            <div class="form-page__img bg-dark-1">
+                <div class="form-page-composition">
+                    <div class="-bg"><img data-move="30" class="js-mouse-move" src="~/img/placeholders/login/bg.png" alt="bg"></div>
+                    <div class="-el-1"><img data-move="20" class="js-mouse-move" src="~/img/placeholders/home9/bg.png" alt="image"></div>
+                    <div class="-el-2"><img data-move="40" class="js-mouse-move" src="~/img/placeholders/home9/1.png" alt="icon"></div>
+                    <div class="-el-3"><img data-move="40" class="js-mouse-move" src="~/img/placeholders/home9/2.png" alt="icon"></div>
+                    <div class="-el-4"><img data-move="40" class="js-mouse-move" src="~/img/placeholders/home9/3.png" alt="icon"></div>
+                </div>
+            </div>
+            @RenderBody()
+        </section>
+    </div>
+</main>

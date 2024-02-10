@@ -7,6 +7,8 @@
 
             <partial name="Partial/Header/_ExploreMenu" />
 
+            <partial name="Partial/Header/_MainMenu" />
+
             <div class="col-auto">
                 <div class="header-right d-flex items-center">
                     <div class="header-right__icons text-white d-flex items-center">
@@ -18,14 +20,11 @@
                     </div>
 
                     <div class="header-right__buttons d-flex items-center ml-30 md:d-none">
-                        <a href="#" class="button -underline text-white">Log in</a>
-                        <a href="#" class="button -sm -white text-dark-1 ml-30">Sign up</a>
+                        <a asp-controller="Account" asp-action="Login" class="button -underline text-white">Log in</a>
+                        <a asp-controller="Account" asp-action="SignUp" class="button -sm -white text-dark-1 ml-30">Sign up</a>
                     </div>
                 </div>
             </div>
-
-            <partial name="Partial/Header/_MainMenu" />
-
         </div>
     </div>
 </header>
